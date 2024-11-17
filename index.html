@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="jp">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,16 +8,159 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/serif.css">
+		<link rel="stylesheet" href="css/custom/index.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="plugin/highlight/github.css">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section class="title-slide"> <!-- Title -->
+					<h2 class="title">10万個の点から一番近い点を見つける</h2>
+					<p class="subtitle">〜KD treeを例とした効率的なアルゴリズムの設計〜</p>
+					<div class="kd-tree-visual">
+						<img src="assets/images/kd-tree-title.svg" alt="KD tree">
+					</div>
+				</section>
+				<section class="slide"> <!--自己紹介-->
+					<h3 class="title">自己紹介</h3>
+					<div class="split">
+						<div class="left">
+							<div class="profile-card">
+								<ul>
+									<li>さめ(meg-ssk)</li>
+									<li>フリーランスのソフトウェアエンジニア</li>
+									<li>得意分野:</li>
+									<ul>
+										<li>コンピュータビジョン (画像認識/点群処理)</li>
+										<li>空間情報処理 (GIS/リモートセンシング)</li>
+										<li>クラウドインフラ設計/IaC</li>
+									</ul>
+									<li>GitHub: <a href="https://github.com/s-sasaki-earthsea-wizard">s-sasaki-earthsea-wizard</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="right">
+							<img src="/assets/images/avatar.png" alt="Syota's VRChat avatar" class="avatar-circular"/>
+						</div>
+					</div>
+				</section>
+				<section class="slide"> <!-- 問題設定 -->
+					<h3 class="title">問題提起: 一番近い点はどれ？</h3>
+					<div class="split">
+						<div class="left">
+							<div class="container">
+								<h4>問題設定</h4>
+								<ul>
+									<li>平面上に4つの点があります (A, B, C, D)</li>
+									<li>点Aに一番近いのはどの点でしょう？</li>
+								</ul>
+							</div>
+						</div>
+						<div class="right">
+							<img src="assets/images/xy-plane-with-4points.svg" alt="4 points on XY plane" width="600px"/>
+						</div>
+					</div>
+				</section>
+				<section class="slide"> <!-- 簡単な解法 -->
+					<h3 class="title">シンプルな解き方</h3>
+					<div class="split">
+						<div class="left">
+							<div class="container">
+								<ul>
+									<li>AB, AC, ADの長さ(ノルム)を計算する</li>
+									<li>言うなれば「定規で長さを測る」</li>
+									<li>あとはこの中の最小値を選べばOK！</li>
+								</ul>
+								$$ \min(||AB||, ||AC||, ||AD||) = || AB ||$$
+							</div>
+						</div>
+						<div class="right">
+							<img src="assets/images/xy-plane-4points-norms.svg" alt="4 points on XY plane with norms" width="600px"/>
+						</div>
+					</div>
+					<div class="highlight-box">
+						なんだ簡単じゃん！めでたしめでたし！...ではない！
+					</div>
+				</section>
+				<section class="slide"> <!-- 計算量の爆発 -->
+					<h3 class="title">計算量の爆発</h3>
+					<p>点の数が10万個になったら？</p>
+					<ul>
+						<li>点Aに一番近い点を計算するためには99,999回の計算が必要</li>
+						<li>点Bに一番近い点を計算するためには99,998回の計算が必要</li>
+						<li>...</li>
+						<li>すべての点の一番近い点を計算するには約5兆回の計算が必要!</li>
+					</ul>
+					<dev class="highlight-box">
+						<ul>
+							<li>計算量が爆発する!</li>
+							<li>現実的な時間、計算リソースでは計算不可能!</li>
+							<li>リアルタイムでの計算は不可能!</li>
+							<li><b>🤔もっと賢く計算できないかな？</b></li>
+						</ul>
+					</dev>
+				</section>
+				<section class="slide"> <!-- 毒入りワインのクイズ -->
+					<h3 class="title">突然ですがクイズです</h3>
+					<ul>
+						<li>4本のワインがあります</li>
+						<li>その中に毒入りワインが1本あります</li>
+						<li>飲んでから1日後に毒の効果が現れます</li>
+						<li>毒入りワインを見つけるためには何人の毒見係が必要?</li>
+						<li><b>4人以下の毒見係で毒入りワインを見つける方法があります!</b></li>
+						<li>有名なクイズなので、答えを知ってる人は手を挙げてください!</li>
+					</ul>
+				</section>
+				<section class="slide"> <!-- 毒入りワインのクイズの解法 -->
+					<h3 class="title">答え: 2人</h3>
+					<ul>
+						<li>アリスとボブの2人が毒見係をします</li>
+						<li>以下の表のように2人がワインを飲みます</li>
+					</ul>
+					<div class="split">
+						<div class="left">
+							<table>
+								<tr>
+									<th></th>
+									<th>アリス</th>
+									<th>ボブ</th>
+								</tr>
+								<tr>
+									<td>ワイン1</td>
+									<td>○</td>
+									<td>○</td>
+								</tr>
+								<tr>
+									<td>ワイン2</td>
+									<td>○</td>
+									<td>×</td>
+								</tr>
+								<tr>
+									<td>ワイン3</td>
+									<td>×</td>
+									<td>○</td>
+								</tr>
+								<tr>
+									<td>ワイン4</td>
+									<td>×</td>
+									<td>×</td>
+								</tr>
+							</table>
+						</div>
+						<div class="right">
+							1日後、
+							<ul>
+								<li>アリスとボブが2人とも死んだらワイン1が毒入り</li>
+								<li>アリスだけが死んだらワイン2が毒入り</li>
+								<li>ボブだけが死んだらワイン3が毒入り</li>
+								<li>2人とも生きていたらワイン4が毒入り</li>
+							</ul>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 
@@ -25,15 +168,27 @@
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				transition: 'linear',
+
+				mathjax2: {
+					config: 'TeX-AMS_HTML-full',
+					TeX: {
+						Macros: {
+							R: '\\mathbb{R}',
+							set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+						}
+					}
+				},
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax2 ]
 			});
 		</script>
 	</body>

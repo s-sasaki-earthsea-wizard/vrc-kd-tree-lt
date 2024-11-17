@@ -122,33 +122,35 @@
 					</ul>
 					<div class="split">
 						<div class="left">
-							<table>
-								<tr>
-									<th></th>
-									<th>アリス</th>
-									<th>ボブ</th>
-								</tr>
-								<tr>
-									<td>ワイン1</td>
-									<td>○</td>
-									<td>○</td>
-								</tr>
-								<tr>
-									<td>ワイン2</td>
-									<td>○</td>
-									<td>×</td>
-								</tr>
-								<tr>
-									<td>ワイン3</td>
-									<td>×</td>
-									<td>○</td>
-								</tr>
-								<tr>
-									<td>ワイン4</td>
-									<td>×</td>
-									<td>×</td>
-								</tr>
-							</table>
+							<div class="container">
+								<table>
+									<tr>
+										<th></th>
+										<th>アリス</th>
+										<th>ボブ</th>
+									</tr>
+									<tr>
+										<td>ワイン1</td>
+										<td>○</td>
+										<td>○</td>
+									</tr>
+									<tr>
+										<td>ワイン2</td>
+										<td>○</td>
+										<td>×</td>
+									</tr>
+									<tr>
+										<td>ワイン3</td>
+										<td>×</td>
+										<td>○</td>
+									</tr>
+									<tr>
+										<td>ワイン4</td>
+										<td>×</td>
+										<td>×</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 						<div class="right">
 							1日後、
@@ -160,6 +162,91 @@
 							</ul>
 						</div>
 					</div>
+				</section>
+				<section class="slide"> <!-- 少ない人数で毒味ができる -->
+					<h3 class="title">ワインが8本に増えたら？</h3>
+					<p>3人の毒見係で毒入りワインを特定できる</p>
+					<div class="split">
+						<div class="left">
+							<table>
+								<tr>
+									<th></th>
+									<th>アリス</th>
+									<th>ボブ</th>
+									<th>チャーリー</th>
+								</tr>
+								<tr>
+									<td>ワイン1</td>
+									<td>○</td>
+									<td>○</td>
+									<td>○</td>
+								</tr>
+								<tr>
+									<td>ワイン2</td>
+									<td>○</td>
+									<td>○</td>
+									<td>×</td>
+								</tr>
+								<tr>
+									<td>ワイン3</td>
+									<td>○</td>
+									<td>×</td>
+									<td>○</td>
+								</tr>
+								<tr>
+									<td>ワイン4</td>
+									<td>○</td>
+									<td>×</td>
+									<td>×</td>
+								</tr>
+							</table>
+						</div>
+						<div class="right">
+							<table>
+								<tr>
+									<td>ワイン5</td>
+									<td>×</td>
+									<td>○</td>
+									<td>○</td>
+								</tr>
+								<tr>
+									<td>ワイン6</td>
+									<td>×</td>
+									<td>○</td>
+									<td>×</td>
+								</tr>
+								<tr>
+									<td>ワイン7</td>
+									<td>×</td>
+									<td>×</td>
+									<td>○</td>
+								</tr>
+								<tr>
+									<td>ワイン8</td>
+									<td>×</td>
+									<td>×</td>
+									<td>×</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</section>
+				<section class="slide"> <!-- n人の毒見係がいれば2^n本のワインを毒見できる -->
+					<h3 class="title">$$ n 人の毒見係がいれば 2^n 本のワインを毒見できる$$</h3>
+					<ul>
+						<li>$$ 組み合わせの工夫でn人の毒見係がいれば2^n本のワインから1本の毒入りワインを発見できる$$</li>
+						<li>1000本のワインがあっても、10人の毒見係がいれば1本の毒入りワインを発見できる</li>
+						<p>$$ 2^{10} = 1024 > 1000 $$</p>
+						<li>10万本のワインがあっても、17人の毒見係がいれば1本の毒入りワインを発見できる</li>
+						<p>$$ 2^{17} = 131072 > 100000 $$</p>
+					</ul>
+					<dev class="highlight-box">
+						<ul>
+							<li>少ない人数で多くのワインを毒見できる!</li>
+							<li>効率的な毒見係の配置が重要!</li>
+							<li>🤔これを応用して、点の中から一番近い点を探す方法はないかな？</li>
+						</ul>
+					</dev>
 				</section>
 			</div>
 		</div>

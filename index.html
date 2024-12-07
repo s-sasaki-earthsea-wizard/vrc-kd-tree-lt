@@ -219,7 +219,7 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 	<tr>
 		<td>🍷1</td>
 		<td>⭕️</td>
-		<td>❌</td>
+		<td>⭕️</td>
 	</tr>
 	<tr>
 		<td>🍷2</td>
@@ -430,9 +430,9 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 
 <div class="highlight-box" data-markdown>
 
-* 候補が線形に減る vs 候補が指数的に減る  
+* 候補が引き算で減る vs 候補が割り算で減る  
   * 分割を繰り返すほど、探索範囲が爆発的に縮む (**理想的には!**)
-* **結果的に、割り算的に減らしていく方が圧倒的に速い** 
+* **割り算で減らしていく方が圧倒的に速い** 
   
 </div>
 
@@ -466,7 +466,7 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 
 * KD-Treeは、*R<sup>2</sup>*(2次元)だけでなく、
   *R<sup>3</sup>*(3次元)にも拡張可能
-* 分割する軸を交互に変えながら、*d*次元空間を効率的に絞り込む
+* 分割する平面を交互に変えながら、3次元空間を効率的に絞り込む
   * 3次元: 
     * *y-z*平面 → *z-x*平面 → *x-y*平面 → *y-z*平面 → ... でサイクリックに平面で分割
 
@@ -488,10 +488,10 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 
 </div>
 
-$$ H_0: \begin{pmatrix} x^1, x^2, ..., x^d\end{pmatrix} $$
-$$ H_1: \begin{pmatrix} x^0, x^2, ..., x^d\end{pmatrix} $$
+$$ H_0: \begin{pmatrix} \mathbf{x}^1, \mathbf{x}^2, ..., \mathbf{x}^d\end{pmatrix} $$
+$$ H_1: \begin{pmatrix} \mathbf{x}^0, \mathbf{x}^2, ..., \mathbf{x}^d\end{pmatrix} $$
 $$\vdots$$
-$$ H_d: \begin{pmatrix} x^0, x^1, ..., x^{d-1}\end{pmatrix} $$
+$$ H_d: \begin{pmatrix} \mathbf{x}^0, \mathbf{x}^1, ..., \mathbf{x}^{d-1}\end{pmatrix} $$
 
 <div class="highlight-box" data-markdown>
 
@@ -503,24 +503,103 @@ $$ H_d: \begin{pmatrix} x^0, x^1, ..., x^{d-1}\end{pmatrix} $$
 
 ### 🌳😣 KD-treeが苦手な場面
 
-* 一直線に並んだ点
-  * 1次元空間では、全探索と同じ計算量になる
-  * これがさっき「理想的」「平均的」にはと言った理由!
-  * 現実の3Dデータでは局所的に点が一直線に並ぶことは十分あり得る
-    * ビル、道路、防波堤、などなど
+* 一直線に並んだ点 -・-・-・-・-
+  * 全探索と同じ *O*(*n*<sup>2</sup>) の計算量に
+  * 📈 現実の3Dデータでは局所的に点が一直線に並ぶことは**十分あり得る**
+    * 🏢ビル、🛣️道路、🏞️堤防、などの人工構造物
 
+<img src="assets/images/kdtree-worst-case.svg" alt="kdtree-worst-case" height="180px"/>
+
+<div class="highlight-box" data-markdown>
+
+* 横方向の分割に意味がない！縦方向の分割だけでは全探索と同じ！
+* 対策: 軸を回転させる、ランダムな分割をする、など
+
+</div>
 
 ---
 
 ### 🌳🔍 KD-treeの応用例
 
-1. **点群データ解析**
- * 3DスキャンやLiDARデータの効率的な解析
+<div class="col" data-markdown>
+
+ 1. **点群データ解析**
+  * 3DスキャンやLiDARデータの効率的な解析
+  * 点群の間引き、ノイズ除去
+
 2. **特徴量ベクトルの類似度**
   * 趣味や好みの近いユーザーの探索
+  * 画像の類似度計算
+
 3. **Hausdorff距離の計算**
-  * 形状比較や最大誤差評価
-				
+  * 機械学習モデルのトレーニングの損失関数
+  * 物体の形状比較
+
+</div>
+
+---
+
+### アルゴリズムの現実的な使い方
+
+<div class="container">
+<div class="col-box-left" data-markdown>
+
+* 😮‍💨**新しいアルゴリズムを作るのは本当に大変**
+  * 正しさの証明
+  * 性能の評価
+  * アイディアの独自性
+* **そもそも新しいアルゴリズムを開発すれば自分の名前がつくレベルの難しさ！**
+  * エドガー・ダイクストラの"ダイクストラ法"
+  * カジミェシュ・クラワトスキの"クラワトスキ定理"
+  * ティム・ピーターズの"ティムソート"
+</div>
+
+<div class="col-box-right" data-markdown>
+
+- ✨**既存のアルゴリズムの宝庫を活用しよう**
+  * 数学、物理、電気電子工学...様々な分野で培われた知恵
+  * KD-treeも計算幾何学の分野から生まれた
+    * 現在の応用例は開発者も想定してなかったはず！
+  * 自分の課題に使えるアルゴリズムがあるはず！
+
+</div>
+
+---
+
+### 🎁 現代のエンジニアの強み
+- **充実したライブラリ**
+  * scikit-learn: `sklearn.neighbors.KDTree`
+  * SciPy: `scipy.sparse.csgraph.dijkstra`
+  * OpenCV: `cv2.FlannBasedMatcher`
+
+- **実装済みの高品質なコード**
+  * テスト済み
+  * 多くのユーザーによるフィードバック
+  * ドキュメントが豊富
+
+---
+
+### 🌟 まとめ: 宝物は足元にある
+
+<div class="simple-box" data-markdown>
+
+* KD-treeを例に見てきたこと:
+  * 単純な全探索 → **賢い分割**で効率化
+  * 理想的な場合は**劇的な性能向上**
+  * 最悪ケースを理解し、**対策をする**
+
+</div>
+
+<div class="highlight-box" data-markdown>
+
+* **先人の知恵を活用しよう！**
+  * アルゴリズムの宝庫が既にそこにある
+  * 異分野のアイディアを組み合わせる
+  * 実装済みライブラリを有効活用
+* 一緒に宝物を探しに行きましょう！ 🤝🚀🎉
+
+</div>
+
 					</textarea>
 				</section>
 			</div>

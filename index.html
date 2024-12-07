@@ -162,7 +162,8 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 
 * 点Aに一番近い点を計算するためには99,999回の計算が必要
 * 点Bに一番近い点を計算するためには99,998回の計算が必要
-* ...
+* (以下略...)
+* 合計約50億回の計算が必要！
 
 </div>
 
@@ -242,10 +243,10 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 
 1日後...
 
-* 👩🏼☠️ かつ 👨🏾‍🦲☠️ → 🍷1が☠️
-* 👩🏼☠️ かつ 👨🏾✅ → 🍷2が☠️
-* 👩🏼✅ かつ 👨🏾‍🦲☠️ → 🍷3が☠️
-* 👩🏼✅ かつ 👨🏾‍🦲✅ → 🍷4が☠️
+* 👩🏼☠️ かつ 👨🏾‍🦲☠️ → 🍷1 が ☠️
+* 👩🏼☠️ かつ 👨🏾‍🦲✅ → 🍷2 が ☠️
+* 👩🏼✅ かつ 👨🏾‍🦲☠️ → 🍷3 が ☠️
+* 👩🏼✅ かつ 👨🏾‍🦲✅ → 🍷4 が ☠️
 
 </div>
 
@@ -253,93 +254,273 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 
 ---
 
-### ワインが8本に増えたら？🍷x8
+### ワインが8本に増えたら？🍷 x 8
+
+**3人の毒見係(👩🏼👨🏾‍🦲👨🏼‍🦰)で毒ワイン🍷☠️を特定できる**
+
+<div class="container">
+<div class="col-box-left" data-markdown>
+
+<table>
+	<tr>
+		<th></th>
+		<th>👩🏼</th>
+		<th>👨🏾‍🦲</th>
+		<th>👨🏼‍🦰</th>
+	</tr>
+	<tr>
+		<td>🍷1</td>
+		<td>⭕️</td>
+		<td>⭕️</td>
+		<td>⭕️</td>
+	</tr>
+	<tr>
+		<td>🍷2</td>
+		<td>⭕️</td>
+		<td>⭕️</td>
+		<td>❌</td>
+	</tr>
+	<tr>
+		<td>🍷3</td>
+		<td>⭕️</td>
+		<td>❌</td>
+		<td>⭕️</td>
+	</tr>
+	<tr>
+		<td>🍷4</td>
+		<td>⭕️</td>
+		<td>❌</td>
+		<td>❌</td>
+	</tr>
+	<tr>
+		<td>🍷5</td>
+		<td>❌</td>
+		<td>⭕️</td>
+		<td>⭕️</td>
+	</tr>
+	<tr>
+		<td>🍷6</td>
+		<td>❌</td>
+		<td>⭕️</td>
+		<td>❌</td>
+	</tr>
+	<tr>
+		<td>🍷7</td>
+		<td>❌</td>
+		<td>❌</td>
+		<td>⭕️</td>
+	</tr>
+	<tr>
+		<td>🍷8</td>
+		<td>❌</td>
+		<td>❌</td>
+		<td>❌</td>
+	</tr>
+</table>
+</div>
+
+<div class="col-box-right" data-markdown>
+
+* まったく同じ方法で:
+
+  * 16本のワイン🍷x16
+    * 4人の毒味係で毒ワイン🍷☠️を発見可能
+  * 32本のワイン🍷x32
+    * 5人の毒味係で毒ワイン🍷☠️を発見可能
+  * 🤔 10万本の🍷があったら？
+
+</div>
+</div>
 
 ---
-				<section class="slide"> <!-- 少ない人数で毒味ができる -->
-					<h3 class="title">ワインが8本に増えたら？</h3>
-					<p>3人の毒見係で毒入りワインを特定できる</p>
-					<div class="split">
-						<div class="left">
-							<table>
-								<tr>
-									<th></th>
-									<th>アリス</th>
-									<th>ボブ</th>
-									<th>チャーリー</th>
-								</tr>
-								<tr>
-									<td>ワイン1</td>
-									<td>○</td>
-									<td>○</td>
-									<td>○</td>
-								</tr>
-								<tr>
-									<td>ワイン2</td>
-									<td>○</td>
-									<td>○</td>
-									<td>×</td>
-								</tr>
-								<tr>
-									<td>ワイン3</td>
-									<td>○</td>
-									<td>×</td>
-									<td>○</td>
-								</tr>
-								<tr>
-									<td>ワイン4</td>
-									<td>○</td>
-									<td>×</td>
-									<td>×</td>
-								</tr>
-							</table>
-						</div>
-						<div class="right">
-							<table>
-								<tr>
-									<td>ワイン5</td>
-									<td>×</td>
-									<td>○</td>
-									<td>○</td>
-								</tr>
-								<tr>
-									<td>ワイン6</td>
-									<td>×</td>
-									<td>○</td>
-									<td>×</td>
-								</tr>
-								<tr>
-									<td>ワイン7</td>
-									<td>×</td>
-									<td>×</td>
-									<td>○</td>
-								</tr>
-								<tr>
-									<td>ワイン8</td>
-									<td>×</td>
-									<td>×</td>
-									<td>×</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</section>
-				<section class="slide"> <!-- n人の毒見係がいれば2^n本のワインを毒見できる -->
-					<h3 class="title">$$ n 人の毒見係がいれば 2^n 本のワインを毒見できる$$</h3>
-					<ul>
-						<li>$$ 組み合わせの工夫でn人の毒見係がいれば2^n本のワインから1本の毒入りワインを発見できる$$</li>
-						<li>1000本のワインがあっても、10人の毒見係がいれば1本の毒入りワインを発見できる</li>
-						<p>$$ 2^{10} = 1024 > 1000 $$</p>
-						<li>10万本のワインがあっても、17人の毒見係がいれば1本の毒入りワインを発見できる</li>
-						<p>$$ 2^{17} = 131072 > 100000 $$</p>
-					</ul>
-					<dev class="highlight-box">
-						<ul>
-							<li>少ない人数で多くのワインを毒見できる!</li>
-							<li>効率的な毒見係の配置が重要!</li>
-							<li>🤔これを応用して、点の中から一番近い点を探す方法はないかな？</li>
-						</ul>
-					</dev>
+
+### *n*人の毒見係がいれば
+### 2<sup>*n*</sup>本のワインを毒見できる
+
+* 組み合わせの工夫で*n*人の毒見係がいれば2<sup>*n*</sup>本のワインから1本の毒入りワインを発見できる
+* 10万本のワインがあっても、17人の毒見係がいれば1本の毒入りワインを発見できる！
+
+**2<sup>17</sup> = 131072 > 100000**
+
+<div class="highlight-box">
+
+* 少ない人数で多くのワインを毒見できる!
+* 効率的な毒見係の配置が重要!
+* **🤔これを応用して、10万個の点の中から一番近い点を探す方法はないかな？**
+
+</div>
+
+---
+
+### 効率化の鍵: KD Tree🌳✂️🌿
+
+<div class="simple-box" data-markdown>
+
+* *x*軸に平行な線で空間を分割！
+* **1回の分割でおおまかに候補を半分に絞り込める！**
+
+</div>
+
+<img src="assets/images/kd-tree-first-split.svg" alt="kd-tree-first-split" height="360px"/>
+
+<div class="highlight-box" data-markdown>
+
+* 🤔 この分割を繰り返したらどうなる？
+* 💡 候補がどんどん減って、より効率的な探索ができそう！
+
+</div>
+
+
+---
+
+### 分割のチカラ
+
+<div class="container">
+<div class="col-box-left" data-markdown>
+
+* **全探索**:  
+  - 4点から最近傍ペアを求める場合、すべての組み合わせ（6通り）の距離計算が必要
+
+</div>
+
+<div class="col-box-right" data-markdown>
+
+* **KD-treeでの探索 (理想的なケース)**:  
+  * 軸方向に沿った分割で探索候補を大幅に減らせる
+  * 全探索よりずっと少ない計算で最近接ペアを見つけられる
+
+</div>
+</div>
+
+<img src="assets/images/kd-tree-3step-sequential.svg" alt="kd-tree-3step-sequential" height="280px"/>
+
+<div class="highlight-box" data-markdown>
+
+* この図では「調べなくてもいい領域」がわかった!
+
+</div>
+
+---
+
+### ➖ 引き算型 vs ➗ 割り算型
+
+<div class="container">
+<div class="col-box-left" data-markdown>
+
+* **引き算型(線形探索)**:
+  * 1回の計算で「候補を1つずつ」しか減らせない
+  * 10万個の候補点があれば10万回もチェックを繰り返す
+  * すべてのペアを計算:
+    * 10万x10万/2 = 約50億回の計算😨
+
+</div>
+
+<div class="col-box-right" data-markdown>
+
+* **割り算型(KD-Treeでの探索)**:
+  * 1回の分割で候補を約半分に減らせる
+    * 10万個が1回で約5万個、2回で約2万5千個…
+    * わずか17回で探索終了✅
+  * すべてのペアを計算:
+	* 10万+10万/2+10万/4+10万/8+ ... = 約20万回の計算😊
+
+</div>
+
+</div>
+
+<div class="highlight-box" data-markdown>
+
+* 候補が線形に減る vs 候補が指数的に減る  
+  * 分割を繰り返すほど、探索範囲が爆発的に縮む (**理想的には!**)
+* **結果的に、割り算的に減らしていく方が圧倒的に速い** 
+  
+</div>
+
+---
+
+### 計算量と Big-O 記号
+
+<div class="container">
+<div class="col-box-left" data-markdown>
+
+* **全探索**:
+  * *n*個の点がある場合、すべてのペア(*n*×*n*)を調べるから *O*(*n*<sup>2</sup>)
+	* ここで *O*(...) は*n*に対する計算量の増え方の目安 (Big-O 記号)
+
+</div>
+
+<div class="col-box-right" data-markdown>
+
+* **KD-Tree(理想的な場合)**:
+  - 分割を重ねて候補を絞るから、平均的に *O*( *n* log *n*)
+    - *n*が大きくなっても、全探索よりずっと速くなる
+
+</div>
+</div>
+
+<img src="assets/images/n^2_vs_nlog(n).png" alt="n^2_vs_nlog(n)" height="300px"/>
+
+---
+
+### ☐ 平面から空間へ 🗳️
+
+* KD-Treeは、*R<sup>2</sup>*(2次元)だけでなく、
+  *R<sup>3</sup>*(3次元)にも拡張可能
+* 分割する軸を交互に変えながら、*d*次元空間を効率的に絞り込む
+  * 3次元: 
+    * *y-z*平面 → *z-x*平面 → *x-y*平面 → *y-z*平面 → ... でサイクリックに平面で分割
+
+<div class="highlight-box" data-markdown>
+
+* 3Dデータの解析などで威力を発揮！
+* 筆者は普段のお仕事でよく使ってます！
+
+</div>
+
+---
+
+### さらなる高次元へ 🚀
+
+<div class="simple-box" data-markdown>
+
+* KD-treeは*R<sup>d</sup>*(*d*次元)にも拡張可能！
+* 超平面*H<sub>0</sub>* → *H<sub>1</sub>* → ... → *H<sub>d</sub>* → *H<sub>0</sub>* → ... で分割
+
+</div>
+
+$$ H_0: \begin{pmatrix} x^1, x^2, ..., x^d\end{pmatrix} $$
+$$ H_1: \begin{pmatrix} x^0, x^2, ..., x^d\end{pmatrix} $$
+$$\vdots$$
+$$ H_d: \begin{pmatrix} x^0, x^1, ..., x^{d-1}\end{pmatrix} $$
+
+<div class="highlight-box" data-markdown>
+
+* **高次元空間の探索でこそ、KD-Treeの真価が発揮される!**
+
+</div>
+
+---
+
+### 🌳😣 KD-treeが苦手な場面
+
+* 一直線に並んだ点
+  * 1次元空間では、全探索と同じ計算量になる
+  * これがさっき「理想的」「平均的」にはと言った理由!
+  * 現実の3Dデータでは局所的に点が一直線に並ぶことは十分あり得る
+    * ビル、道路、防波堤、などなど
+
+
+---
+
+### 🌳🔍 KD-treeの応用例
+
+1. **点群データ解析**
+ * 3DスキャンやLiDARデータの効率的な解析
+2. **特徴量ベクトルの類似度**
+  * 趣味や好みの近いユーザーの探索
+3. **Hausdorff距離の計算**
+  * 形状比較や最大誤差評価
+				
 					</textarea>
 				</section>
 			</div>

@@ -4,7 +4,7 @@
  *
  * This theme is Copyright (C) 2012-2013 Owen Versteeg, http://owenversteeg.com - it is MIT licensed.
  */
-.reveal a {
+ .reveal a {
   line-height: 1.3em;
 }
 
@@ -17,11 +17,11 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
  *********************************************/
 :root {
   --r-background-color: #F0F1EB;
-  --r-main-font: Palatino Linotype, Book Antiqua, Palatino, FreeSerif, serif;
-  --r-main-font-size: 40px;
+  --r-main-font: Lato, sans-serif;
+  --r-main-font-size: 36px;
   --r-main-color: #000;
-  --r-block-margin: 20px;
-  --r-heading-margin: 0 0 20px 0;
+  --r-block-margin: 10px;
+  --r-heading-margin: 0 0 10px 0;
   --r-heading-font: Palatino Linotype, Book Antiqua, Palatino, FreeSerif, serif;
   --r-heading-color: #383D3D;
   --r-heading-line-height: 1.2;

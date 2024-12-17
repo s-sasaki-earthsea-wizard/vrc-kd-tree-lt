@@ -1,111 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300">
-  <!-- First Frame (X-split) -->
-  <g transform="translate(0, 0)">
-    <rect width="300" height="300" fill="#ffffff"/>
-    <!-- Axes -->
-    <path d="M 50 250 L 250 250" stroke="#000" stroke-width="2"/>
-    <path d="M 50 250 L 50 50" stroke="#000" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <!-- Background -->
+    <rect width="800" height="400" fill="#f8f9fa"/>
     
-    <!-- Grid -->
-    <g stroke="#e0e0e0" stroke-width="1">
-      <path d="M 100 250 L 100 50"/>
-      <path d="M 150 250 L 150 50"/>
-      <path d="M 200 250 L 200 50"/>
-      <path d="M 50 200 L 250 200"/>
-      <path d="M 50 150 L 250 150"/>
-      <path d="M 50 100 L 250 100"/>
+    <!-- Grid Lines -->
+    <g stroke="#e9ecef" stroke-width="1">
+        <line x1="0" y1="200" x2="800" y2="200"/>
+        <line x1="400" y1="0" x2="400" y2="400"/>
     </g>
-    
-    <!-- First split (X-axis) -->
-    <path d="M 150 50 L 150 250" stroke="#FF4444" stroke-width="2" stroke-dasharray="5,5"/>
-    <!-- Highlight left region -->
-    <rect x="50" y="50" width="100" height="200" fill="#FF4444" fill-opacity="0.1"/>
-    
-    <!-- Points -->
-    <g fill="#2196F3">
-      <circle cx="70" cy="200" r="5" fill="#FF0000"/> <!-- Query Point A -->
-      <circle cx="100" cy="70" r="5"/>  <!-- B -->
-      <circle cx="180" cy="80" r="5"/>  <!-- C -->
-      <circle cx="200" cy="150" r="5"/> <!-- D -->
-    </g>
-    
-    <!-- Step Label -->
-    <text x="150" y="30" text-anchor="middle" font-size="16">Step 1: X軸で分割し、左側の領域へ</text>
-  </g>
-
-  <!-- Second Frame (Y-split) -->
-  <g transform="translate(350, 0)">
-    <rect width="300" height="300" fill="#ffffff"/>
-    <!-- Axes -->
-    <path d="M 50 250 L 250 250" stroke="#000" stroke-width="2"/>
-    <path d="M 50 250 L 50 50" stroke="#000" stroke-width="2"/>
-    
-    <!-- Grid -->
-    <g stroke="#e0e0e0" stroke-width="1">
-      <path d="M 100 250 L 100 50"/>
-      <path d="M 150 250 L 150 50"/>
-      <path d="M 200 250 L 200 50"/>
-      <path d="M 50 200 L 250 200"/>
-      <path d="M 50 150 L 250 150"/>
-      <path d="M 50 100 L 250 100"/>
-    </g>
-    
-    <!-- First split line (X) (faded) -->
-    <path d="M 150 50 L 150 250" stroke="#FFB0B0" stroke-width="2" stroke-dasharray="5,5"/>
-    <!-- Second split (Y-axis) -->
-    <!-- Suppose the Y-split is at y=140 (between A(200) and B(70) ) -->
-    <path d="M 50 140 L 150 140" stroke="#4444FF" stroke-width="2" stroke-dasharray="5,5"/>
-    <!-- Highlight upper region (above y=140 on left side) -->
-    <rect x="50" y="50" width="100" height="90" fill="#4444FF" fill-opacity="0.1"/>
-    
-    <!-- Points -->
-    <g fill="#2196F3">
-      <circle cx="70" cy="200" r="5" fill="#FF0000"/> <!-- Query A -->
-      <circle cx="100" cy="70" r="5"/>                <!-- B -->
-      <circle cx="180" cy="80" r="5"/>                <!-- C -->
-      <circle cx="200" cy="150" r="5"/>               <!-- D -->
-    </g>
-    
-    <!-- Step Label -->
-    <text x="150" y="30" text-anchor="middle" font-size="16">Step 2: Y軸で分割し、上側へさらに絞る</text>
-  </g>
-
-  <!-- Third Frame (X-split again) -->
-  <g transform="translate(700, 0)">
-    <rect width="300" height="300" fill="#ffffff"/>
-    <!-- Axes -->
-    <path d="M 50 250 L 250 250" stroke="#000" stroke-width="2"/>
-    <path d="M 50 250 L 50 50" stroke="#000" stroke-width="2"/>
-    
-    <!-- Grid -->
-    <g stroke="#e0e0e0" stroke-width="1">
-      <path d="M 100 250 L 100 50"/>
-      <path d="M 150 250 L 150 50"/>
-      <path d="M 200 250 L 200 50"/>
-      <path d="M 50 200 L 250 200"/>
-      <path d="M 50 150 L 250 150"/>
-      <path d="M 50 100 L 250 100"/>
-    </g>
-    
-    <!-- Previous lines (faded) -->
-    <path d="M 150 50 L 150 250" stroke="#FFB0B0" stroke-width="2" stroke-dasharray="5,5"/>
-    <path d="M 50 140 L 150 140" stroke="#B0B0FF" stroke-width="2" stroke-dasharray="5,5"/>
-    
-    <!-- Third split (X-axis again) -->
-    <!-- Since A is at x=70, we choose x=90 to isolate it further -->
-    <path d="M 90 50 L 90 140" stroke="#FF4444" stroke-width="2" stroke-dasharray="5,5"/>
-    <!-- Highlight even narrower region -->
-    <rect x="50" y="50" width="40" height="90" fill="#FF4444" fill-opacity="0.1"/>
 
     <!-- Points -->
-    <g fill="#2196F3">
-      <circle cx="70" cy="200" r="5" fill="#FF0000"/> <!-- A -->
-      <circle cx="100" cy="70" r="5"/>                <!-- B -->
-      <circle cx="180" cy="80" r="5"/>                <!-- C -->
-      <circle cx="200" cy="150" r="5"/>               <!-- D -->
-    </g>
+    <!-- Right Upper Quarter -->
+    <circle cx="600" cy="80" r="6" fill="#ff9f1c"/>
+    <circle cx="520" cy="120" r="6" fill="#ff9f1c"/>
+    <circle cx="700" cy="50" r="6" fill="#ff9f1c"/>
     
-    <!-- Step Label -->
-    <text x="150" y="30" text-anchor="middle" font-size="16">Step 3: 再びX軸で分割し、A付近の領域へ特定</text>
-  </g>
+    <!-- Right Lower Quarter -->
+    <circle cx="550" cy="280" r="6" fill="#2ec4b6"/>
+    <circle cx="650" cy="350" r="6" fill="#2ec4b6"/>
+    <circle cx="720" cy="320" r="6" fill="#2ec4b6"/>
+    
+    <!-- Left Upper Quarter -->
+    <circle cx="150" cy="80" r="6" fill="#e71d36"/>
+    <circle cx="250" cy="120" r="6" fill="#e71d36"/>
+    <circle cx="300" cy="50" r="6" fill="#e71d36"/>
+    
+    <!-- Left Lower Quarter -->
+    <circle cx="180" cy="280" r="6" fill="#011627"/>
+    <circle cx="280" cy="350" r="6" fill="#011627"/>
+    <circle cx="120" cy="320" r="6" fill="#011627"/>
+    
+    <!-- Query Point -->
+    <circle cx="120" cy="320" r="8" fill="none" stroke="#ff0000" stroke-width="3"/>
+    <text x="100" y="350" font-family="Arial" font-size="14" fill="#ff0000">Query Point</text>
+
+    <!-- First Split (Vertical) -->
+    <line x1="400" y1="0" x2="400" y2="400" stroke="#ff0000" stroke-width="2"/>
+    <text x="420" y="30" font-family="Arial" font-size="14" fill="#ff0000">First Split (x-axis)</text>
+
+    <!-- Second Split (Horizontal) -->
+    <line x1="0" y1="200" x2="400" y2="200" stroke="#00ff00" stroke-width="2"/>
+    <text x="20" y="180" font-family="Arial" font-size="14" fill="#00ff00">Second Split (y-axis)</text>
+
+    <!-- Third Split (Vertical) -->
+    <line x1="200" y1="200" x2="200" y2="400" stroke="#0000ff" stroke-width="2"/>
+    <text x="220" y="220" font-family="Arial" font-size="14" fill="#0000ff">Third Split (x-axis)</text>
 </svg>

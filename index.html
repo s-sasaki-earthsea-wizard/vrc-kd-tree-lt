@@ -379,7 +379,7 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 <div class="col-box-left" data-markdown>
 
 * **全探索**:  
-  - 4点から最近傍ペアを求める場合、すべての組み合わせ（6通り）の距離計算が必要
+  - 12点から最近傍を求める場合、11回の距離計算が必要
 
 </div>
 
@@ -387,16 +387,15 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 
 * **KD-treeでの探索 (理想的なケース)**:  
   * 軸方向に沿った分割で探索候補を大幅に減らせる
-  * 全探索よりずっと少ない計算で最近接ペアを見つけられる
 
 </div>
 </div>
 
-<img src="assets/images/kd-tree-3step-sequential.svg" alt="kd-tree-3step-sequential" height="280px"/>
+<img src="assets/images/kd-tree-3step-sequential.svg" alt="kd-tree-3step-sequential" height="360px"/>
 
 <div class="highlight-box" data-markdown>
 
-* この図では「調べなくてもいい領域」がわかった!
+* わずか3回の分割で最も近い点がわかった！
 
 </div>
 
@@ -488,10 +487,10 @@ $$ \min(||AB||, ||AC||, ||AD||)$$
 
 </div>
 
-$$ H_0: \begin{pmatrix} \mathbf{x}^1, \mathbf{x}^2, ..., \mathbf{x}^d\end{pmatrix} $$
-$$ H_1: \begin{pmatrix} \mathbf{x}^0, \mathbf{x}^2, ..., \mathbf{x}^d\end{pmatrix} $$
+$$ H_0: \begin{pmatrix} x^1, x^2, ..., x^d\end{pmatrix} \cdot \vec{w_0} = b_0 $$
+$$ H_1: \begin{pmatrix} x^0, x^2, ..., x^d\end{pmatrix} \cdot \vec{w_1} = b_1 $$
 $$\vdots$$
-$$ H_d: \begin{pmatrix} \mathbf{x}^0, \mathbf{x}^1, ..., \mathbf{x}^{d-1}\end{pmatrix} $$
+$$ H_d: \begin{pmatrix} x^0, x^1, ..., x^{d-1}\end{pmatrix} \cdot \vec{w_d} = b_d $$
 
 <div class="highlight-box" data-markdown>
 
@@ -513,7 +512,7 @@ $$ H_d: \begin{pmatrix} \mathbf{x}^0, \mathbf{x}^1, ..., \mathbf{x}^{d-1}\end{pm
 <div class="highlight-box" data-markdown>
 
 * 横方向の分割に意味がない！縦方向の分割だけでは全探索と同じ！
-* 対策: 軸を回転させる、ランダムな分割をする、など
+* **KD treeは一様分布のデータに最適化されている**
 
 </div>
 
@@ -589,7 +588,7 @@ $$ H_d: \begin{pmatrix} \mathbf{x}^0, \mathbf{x}^1, ..., \mathbf{x}^{d-1}\end{pm
 * KD-treeを例に見てきたこと:
   * 単純な全探索 → **賢い分割**で効率化
   * 理想的な場合は**劇的な性能向上**
-  * 最悪ケースを理解し、**対策をする**
+  * 不得意なケースを理解して**適切な使い分け**
 
 </div>
 
@@ -597,8 +596,8 @@ $$ H_d: \begin{pmatrix} \mathbf{x}^0, \mathbf{x}^1, ..., \mathbf{x}^{d-1}\end{pm
 
 * **先人の知恵を活用しよう！**
   * アルゴリズムの宝庫が既にそこにある
+    * 実装済みライブラリを有効活用
   * 異分野のアイディアを組み合わせる
-  * 実装済みライブラリを有効活用
   * (適切に)**パクリまくるのは恥ずかしくない！**
 * **一緒に宝物を探しに行きましょう！** 🤝🚀🎉
 
